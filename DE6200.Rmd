@@ -1,0 +1,55 @@
+---
+title: "DE6200 Notebook"
+output: html_notebook
+---
+
+```{r}
+#Data: number of ticks found on dogs sampled from a shelter
+tickdata<- c(0,0,0,0,1,0,6,0,3,3,5,22,0,0,3,33,4,2,1,23,7,2,4,6,78)
+hist(tickdata, breaks=90)
+```
+
+![](images/EpiTriad.png)
+# Lab: Measures of Disease Frequency
+![](images/samplesize.png){width=90%}
+1. The sample size necessary to detect disease at or above 5% prevalence in a herd of 5000 deer at 95% confidence is 59 deer.
+
+2. Hypergeometric distribution
+a) The sample size required to detect disease at 1% prevalence in a large population at 95% confidence is
+b) The sample size required to detect disease at 2% prevalence in a large population at 99% confidence is 
+Situation a, in comparison to situation b, 
+
+3. 300 deer sampled out of a population of 4000 tested negative for antibodies against Epizootic Hemorrhagic Disease. Based on this finding, we can be 95% confident that the prevalence of exposure to EHD is less than 1%.
+
+4. 'Lame Disease' in wild turkeys 
+a) Lee County prevalence and confidence intervals (Sterne)
+Prevalence is 0.200
+Lower Confidence Level is 0.143
+Upper Confidence Level is 0.273
+
+Chambers County prevalence and confidence intervals (Sterne)
+Prevalence is 0.267
+Lower Confidence Level is 0.131
+Upper Confidence Level is 0.449
+
+Russell County prevalence and confidence intervals (Sterne)
+Prevalence is 0.031
+Lower Confidence Level is 0.009
+Upper Confidence Level 0.087
+
+b) The prevalence of all three counties using the Fisher method is as follows:
+Lee
+N=150
+Infected=30
+Non-infected=120
+Prevalence%=26.7%
+Chambers
+N=30
+Infected=8
+Non-infected=22
+Prevalence%=20.0%
+Russell
+N=96
+Infected=3
+Non-infected=93
+Prevalence%=3.1%
