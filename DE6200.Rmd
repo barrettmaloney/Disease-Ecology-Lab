@@ -15,9 +15,9 @@ hist(tickdata, breaks=90)
 1. The sample size necessary to detect disease at or above 5% prevalence in a herd of 5000 deer at 95% confidence is 59 deer.
 
 2. Hypergeometric distribution
-a) The sample size required to detect disease at 1% prevalence in a large population at 95% confidence is
-b) The sample size required to detect disease at 2% prevalence in a large population at 99% confidence is 
-Situation a, in comparison to situation b, 
+a) The sample size required to detect disease at 1% prevalence in a large population at 95% confidence is around 300
+b) The sample size required to detect disease at 2% prevalence in a large population at 99% confidence is around 230
+Situation B, despite being measured at a higher confidence, requires a lower sample size than situation A. This is because in a large populations size, the difference between 1% and 2% can be significant.
 
 3. 300 deer sampled out of a population of 4000 tested negative for antibodies against Epizootic Hemorrhagic Disease. Based on this finding, we can be 95% confident that the prevalence of exposure to EHD is less than 1%.
 
