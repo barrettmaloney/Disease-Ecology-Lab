@@ -3,21 +3,65 @@ title: "R Notebook"
 output: html_notebook
 ---
 
-This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
-
-Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
+###Previous Labs (Copied from Github)
 
 ```{r}
-plot(cars)
+#Data: number of ticks found on dogs sampled from a shelter
+tickdata<- c(0,0,0,0,1,0,6,0,3,3,5,22,0,0,3,33,4,2,1,23,7,2,4,6,78)
+hist(tickdata, breaks=90)
 ```
 
-Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
+![](images/EpiTriad.png)
 
-When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file). 
+---
 
-The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+### Lab: Measures of Disease Frequency
+![](images/samplesize.png){width=90%}
+1. The sample size necessary to detect disease at or above 5% prevalence in a herd of 5000 deer at 95% confidence is 59 deer.
 
-#SIR Models
+2. Hypergeometric distribution
+a) The sample size required to detect disease at 1% prevalence in a large population at 95% confidence is around 300
+b) The sample size required to detect disease at 2% prevalence in a large population at 99% confidence is around 230
+Situation B, despite being measured at a higher confidence, requires a lower sample size than situation A. This is because in a large populations size, the difference between 1% and 2% can be significant.
+
+3. 300 deer sampled out of a population of 4000 tested negative for antibodies against Epizootic Hemorrhagic Disease. Based on this finding, we can be 95% confident that the prevalence of exposure to EHD is less than 1%.
+
+4. 'Lame Disease' in wild turkeys 
+a) Lee County prevalence and confidence intervals (Sterne)
+Prevalence is 0.200
+Lower Confidence Level is 0.143
+Upper Confidence Level is 0.273
+
+Chambers County prevalence and confidence intervals (Sterne)
+Prevalence is 0.267
+Lower Confidence Level is 0.131
+Upper Confidence Level is 0.449
+
+Russell County prevalence and confidence intervals (Sterne)
+Prevalence is 0.031
+Lower Confidence Level is 0.009
+Upper Confidence Level 0.087
+
+b) The prevalence of all three counties using the Fisher method is as follows:
+Lee
+N=150
+Infected=30
+Non-infected=120
+Prevalence%=26.7%
+Chambers
+N=30
+Infected=8
+Non-infected=22
+Prevalence%=20.0%
+Russell
+N=96
+Infected=3
+Non-infected=93
+Prevalence%=3.1%
+
+---
+
+###SIR Models
 
 ```{r}
 library(deSolve)
@@ -63,7 +107,9 @@ matplot(x = times, y = out, type = "l",
 legend(240, 0.7, c("Susceptible", "Infected", "Recovered", "Total"), pch = 1, col = 1:4, bty = "n")
 ```
 
-#Frog Bullying Disease
+---
+
+###Frog Bullying Disease
 
 Gamma = 1/21 = 0.048
 If R0 = 2, then Beta = 2*0.048 = 0.096
@@ -113,6 +159,29 @@ legend(240, 0.7, c("Susceptible", "Infected", "Recovered", "Total"), pch = 1, co
 ```
 This model shows that at around time = 100, the disease is at it's peak with the highest number of infected individuals. This is also the approximate time that the number of susceptibles and the number of recovered are equal. After this, the disease begins to infect fewer and fewer as time passes, and the number of recovered individuals increases.
 
+---
+
+###October 25, 2023 Lab: Disease Distribution Map in R
+
+```{r}
+library(ggplot2)
+library(usmap)
+library(dplyr)
+alhdata<-us_map(regions = "states")
+states_found <- c("Virginia","West Virginia","North Carolina", "New Jersey", "Pennsylvania", "New York", "Maryland", "Tennessee", "Kentucky", "Ohio", "Georgia", "Connecticut", "Delaware", "Missouri", "South Carolina", "Arkansas", "Massachusetts", "Rhode Island")
+alt_dist<-ggplot(alhdata,aes(x,y,group=group,fill=full%in%states_found))+geom_polygon(color='black')+coord_equal()+scale_fill_manual(values=c('white','firebrick'),guide='none')+usmap:::theme_map()+labs(title="Asian longhorned tick distribution in US states",subtitle="As of February 2023;https://www.cdc.gov/ticks/longhorned-tick/.")+theme(panel.background = element_rect(color = "black", fill = "gray")) 
+alt_dist
+
+```
+
+```{r}
+alhdata<-us_map(regions = "states")
+states_found <- c("Alabama","Arkansas","Colorado", "Idaho", "Illinois", "Iowa", "Kansas", "Louisiana", "Maryland", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Pennsylvania", "South Dakota", "Tennessee", "Texas", "Utah", "Virginia", "West Virginia", "Wisconsin", "Wyoming")
+alt_dist<-ggplot(alhdata,aes(x,y,group=group,fill=full%in%states_found))+geom_polygon(color='black')+coord_equal()+scale_fill_manual(values=c('white','#336633'),guide='none')+usmap:::theme_map()+labs(title="Chronic Wasting Disease distribution in US states",subtitle="As of February 2023;https://www.cdc.gov/prions/cwd/occurrence.html")+theme(panel.background = element_rect(color = "black", fill = "gray")) 
+alt_dist
+```
+
+---
 
 
 
